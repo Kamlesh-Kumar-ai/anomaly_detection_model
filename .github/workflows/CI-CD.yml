@@ -1,0 +1,41 @@
+name: CI/CD pipeline
+
+on:
+  push:
+    branches:
+       - main:
+
+jobs:
+   build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+    - uses: actions/checkout&v3
+
+    - name: set up python
+    - uses: actions/setup-python&v4
+      with:
+        python-version: "3.12"
+
+    - name: install dependencies
+       run: |
+        pip install -r requirements.txt
+    - name: Build a Docker Image
+      run: |
+       docker build -t proxy-detection .
+
+    - name: Run Test 
+      run: | 
+       echo "no tests yet"
+
+    - name: login to docker hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push Docker Image
+      run: |
+       docker tag proxy-detection:latest ${{ secrets.DOCKER_USERNAME }}/proxy-detection:latest
+       docker push ${{ secrets.DOCKER_USERNAME }}/proxy-detection:latest
+

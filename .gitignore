@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Env
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+
+# ML models
+*.pkl
+*.joblib
+
+# Data files (optional)
+*.csv
+*.xlsx
+
+# Logs
+*.log
+
+# Secrets
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
