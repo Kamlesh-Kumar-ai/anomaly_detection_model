@@ -1,7 +1,7 @@
 # use lightweight python 
 FROM python:3.12-slim
 
-# set working directory  
+# set working directory
 WORKDIR /app
 
 # copy requirements first (for caching)
